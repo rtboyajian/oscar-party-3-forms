@@ -60,6 +60,17 @@
 
     <main>
       <div class="container-two-thirds">
+        <% if notice.present? %>
+          <div style="color:green">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert.present? %>
+          <div style="color:red"
+            <%= alert %>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
     </main>
@@ -70,6 +81,11 @@
           <div>
             <a href="/about">
               About
+            </a>
+          </div>
+          <div>
+            <a href="/backdoor">
+              Admin
             </a>
           </div>
         </div>
