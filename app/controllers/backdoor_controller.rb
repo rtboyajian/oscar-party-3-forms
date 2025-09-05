@@ -4,4 +4,13 @@ class BackdoorController < ApplicationController
   def backdoor_index
     render({:template => "backdoor_templates/backdoor_index"})
   end
+
+  def create_director
+    the_director = Director.new
+    the_director.first_name = params.fetch("query_first_name")
+    the_director.last_name = params.fetch("query_last_name")
+    the_director.save
+
+    redirect_to("/backdoor", {:notice => "Director created successfully"})
+  end
 end
