@@ -5,19 +5,35 @@
     <h2> Create Director </h2>
   </header>
 
+
   <form action="/backdoor/insert_director" method="post">
     <div>
-      <label for="director_first_name_box"> Director First Name </label>
-      <input type="text" id="director_first_name_box"> name="query_first_name">
+      <label for="director_first_name_box">Director First Name</label>
+      <input type="text" id="director_first_name_box" name="query_first_name">
     </div>
 
     <div>
-      <label for="director_last_name_box> Director Last Name </label>
-      <input type="text" id="director_last_name_box"> name="query_last_name">
+      <label for="director_last_name_box">Director Last Name</label>
+      <input type="text" id="director_last_name_box" name="query_last_name">
     </div>
+
+    <div>
+      <label for="director_dob_box">Date of Birth</label>
+      <input type="text" id="director_dob_box" name="query_dob">
+    </div>
+
+    <div>
+      <label for="director_bio_box">Bio</label>
+      <textarea id="director_bio_box" name="query_bio" rows="3"></textarea>
+
+    <div>
+      <label for="director_image">Image URL</label>
+      <input type="text" id="director_image" name="query_image">
+    </div>
+
     
-  <button type="submit">
-    Create director
-  </button>
-  </form>
+    <button type="submit">
+      Create director
+    </button>
+    </form>
 </article>

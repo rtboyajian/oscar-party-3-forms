@@ -9,8 +9,15 @@ class BackdoorController < ApplicationController
     the_director = Director.new
     the_director.first_name = params.fetch("query_first_name")
     the_director.last_name = params.fetch("query_last_name")
-    the_director.save
+    the_director.dob = params.fetch("query_dob")
+    the_director.bio = params.fetch("query_bio")
+    the_director.bio = params.fetch("query_image")
 
-    redirect_to("/backdoor", {:notice => "Director created successfully"})
+    if the_director.valid?
+      the_director.save
+      redirect_to("/backdoor", {:notice => "Director created successfully"})
+    else 
+      redirect_to("/backdoor", {:alert => the_director.errors.full_messages.to_sentence})
+    end
   end
 end
