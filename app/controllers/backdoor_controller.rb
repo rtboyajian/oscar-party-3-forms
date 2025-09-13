@@ -53,7 +53,7 @@ class BackdoorController < ApplicationController
   end
     
   def destroy_director 
-    the_id = params.fetch("/path_id")
+    the_id = params.fetch("path_id")
     the_director = Director.where({:id => the_id}).at(0)
 
     the_director.destroy
@@ -115,4 +115,24 @@ class BackdoorController < ApplicationController
 
     redirect_to("/backdoor/actors", {:notice => "Actor deleted successfully."})
   end
+
+  def create_movie
+    the_movie = Movie.new
+    the_movie.title = params.fetch("query_title")
+    the_movie.year = params.fetch("query_year")
+    the_movie.duration = params.fetch("query_duration")
+    the_movie.description = params.fetch("query_description")
+    the_movie.image = params.fetch("query_image")
+    the_movie.director_id = params.fetch("query_director_id")
+    the_movie.released_on = params.fetch("query_released_on")
+    the_movie.oscar_cohort = params.fetch("query_oscar_cohort")
+    the_movie.result = params.fetch("query_result")
+
+    if the_movie.valid?
+      the_movie.save
+      redirect_to("/backdoor", { :notice => "Movie created successfully." })
+    else
+      redirect_to("/backdoor", { :alert => the_movie.errors.full_messages.to_sentence })
+    end
+  end   
 end

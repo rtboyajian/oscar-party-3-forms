@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   post("/backdoor/modify_actor/:path_id", {:controller => "backdoor", :action => "update_actor"})
   get("/backdoor/delete_actor/:path_id", {:controller => "backdoor", :action => "destroy_actor"})
   
+  post("/backdoor/insert_movie", {:controller => "backdoor", :action => "create_movie"})
 end
