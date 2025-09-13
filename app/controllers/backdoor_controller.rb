@@ -135,4 +135,48 @@ class BackdoorController < ApplicationController
       redirect_to("/backdoor", { :alert => the_movie.errors.full_messages.to_sentence })
     end
   end   
+
+  def movies_index
+    @list_of_movies = Movie.all
+
+    render({:template => "backdoor_templates/movies_index"})
+  end
+
+  def movie_show
+    the_id = params.fetch("path_id")
+    @the_movie = Movie.where({:id => the_id}).at(0)
+
+    render({:template => "backdoor_templates/movie_show"})
+  end
+
+
+  def update_movie
+    the_id = params.fetch("path_id")
+    the_movie = Movie.where({:id => the_id}).at(0)
+
+    the_movie.title = params.fetch("query_title")
+    the_movie.year = params.fetch("query_year")
+    the_movie.duration = params.fetch("query_duration")
+    the_movie.description = params.fetch("query_description")
+    the_movie.image = params.fetch("query_image")
+    the_movie.released_on = params.fetch("query_released_on")
+    the_movie.oscar_cohort = params.fetch("query_oscar_cohort")
+    the_movie.oscar_result = params.fetch("query_result")
+
+    if the_movie.valid?
+      the_movie.save
+      redirect_to("/backdoor/movies/#{the_movie.id}", {:notice => "Movie updated successfully."})
+    else
+        redirect_to("/backdoor/movies/#{the_movie.id}", {:alert => the_movie.errors.full_messages.to_sentence})
+    end
+  end
+
+  def destroy_movie
+    the_id = params.fetch("path_id")
+    the_movie = Movie.where({:id => the_id}).at(0)
+
+    the_movie.destroy
+
+    redirect_to("/backdoor/movies", {:notice => "Movie deleted successfully."})
+  end
 end

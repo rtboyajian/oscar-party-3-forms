@@ -1,0 +1,73 @@
+<nav>
+  <ul>
+    <li><a href="/backdoor/movies">Manage Movies</a></li>
+  </ul>
+</nav>
+
+<nav aria-label="breadcrumb">
+  <ul>
+    <li><a href="/backdoor">Admin</a></li>
+    <li>Manage movies</li>
+  </ul>
+</nav>
+
+<article>
+  <header>
+    <h1>Movies</h1>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Duration</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Released On</th>
+        <th>Oscar Cohort</th>
+        <th>Oscar Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @list_of_movies.each do |a_movie| %>
+        <tr>
+          <td>
+            <%= a_movie.title %>
+          </td>
+          <td>
+            <%= a_movie.year %>
+          </td>
+          <td>
+            <%= a_movie.duration %>
+          </td>
+          <td>
+            <%= a_movie.description %>
+          </td>
+          <td>
+            <%= a_movie.image %>
+          </td>   
+          <td>
+            <%= a_movie.director_id %>
+          </td>
+          <td>
+            <%= a_movie.released_on %>
+          </td>
+          <td>
+            <%= a_movie.oscar_cohort %>
+          </td>
+          <td>
+            <%= a_movie.oscar_result %> 
+          </td>                      
+          <td>
+            <a href="/backdoor/movies/<%= a_movie.id %>">Edit</a>
+            |
+            <a href="/backdoor/delete_movie/<%= a_movie.id %>">
+              Delete
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>
