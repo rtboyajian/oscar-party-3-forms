@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   get("/backdoor/movies/:path_id", {:controller => "backdoor", :action => "movie_show"})
   post("/backdoor/insert_movie", {:controller => "backdoor", :action => "create_movie"})
   post("/backdoor/modify_movie/:path_id", {:controller => "backdoor", :action => "update_movie"})
-  post("/backdoor/delete_movie/:path_id", {:controller => "backdoor", :action => "destroy_movie"})
+  get("/backdoor/delete_movie/:path_id", {:controller => "backdoor", :action => "destroy_movie"})
 end
+

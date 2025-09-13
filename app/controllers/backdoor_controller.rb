@@ -24,7 +24,7 @@ class BackdoorController < ApplicationController
     the_director.last_name = params.fetch("query_last_name")
     the_director.dob = params.fetch("query_dob")
     the_director.bio = params.fetch("query_bio")
-    the_director.bio = params.fetch("query_image")
+    the_director.image = params.fetch("query_image")
 
     if the_director.valid?
       the_director.save
@@ -161,7 +161,7 @@ class BackdoorController < ApplicationController
     the_movie.image = params.fetch("query_image")
     the_movie.released_on = params.fetch("query_released_on")
     the_movie.oscar_cohort = params.fetch("query_oscar_cohort")
-    the_movie.oscar_result = params.fetch("query_result")
+    the_movie.result = params.fetch("query_result")
 
     if the_movie.valid?
       the_movie.save
