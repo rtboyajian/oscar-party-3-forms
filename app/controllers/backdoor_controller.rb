@@ -52,12 +52,67 @@ class BackdoorController < ApplicationController
     end
   end
     
-
   def destroy_director 
     the_id = params.fetch("/path_id")
     the_director = Director.where({:id => the_id}).at(0)
 
     the_director.destroy
     redirect_to("/backdoor/directors", {:notice => "Director deleted successfully."})
+  end
+
+  def actors_index
+    @list_of_actors = Actor.all
+
+  render({:template => "backdoor_templates/actors_index"})
+  end
+
+  def actor_show
+    the_id = params.fetch("path_id")
+    @the_actor = Actor.where({:id => the_id}).at(0)
+
+    render({:template => "backdoor_templates/actor_show"})
+  end
+
+  def create_actor
+    the_actor = Actor.new
+    the_actor.first_name = params.fetch("query_first_name")
+    the_actor.last_name = params.fetch("query_last_name")
+    the_actor.dob = params.fetch("query_dob")
+    the_actor.bio = params.fetch("query_bio")
+    the_actor.image = params.fetch("query_image")
+
+    if the_actor.valid?
+      the_actor.save
+      redirect_to("/backdoor", {:notice => "Actor created successfully."})
+    else 
+      redirect_to("/backdoor", {:alert => the_actor.errors.full_messages.to_sentence})
+    end
+  end
+
+  def update_actor
+    the_id = params.fetch("path_id")
+    the_actor = Actor.where({:id => the_id}).at(0)
+
+    the_actor.first_name = params.fetch("query_first_name")
+    the_actor.last_name = params.fetch("query_last_name")
+    the_actor.dob = params.fetch("query_dob")
+    the_actor.bio = params.fetch("query_bio")
+    the_actor.image = params.fetch("query_image")
+
+    if the_actor.valid?
+      the_actor.save
+      redirect_to("/backdoor/actors/#{the_actor.id}", {:notice => "Actor updated successfully."})
+    else
+        redirect_to("/backdoor/actors/#{the_actor.id}", {:alert => the_actor.errors.full_messages.to_sentence})
+    end
+  end
+
+  def destroy_actor
+    the_id = params.fetch("path_id")
+    the_actor = Actor.where({:id => the_id}).at(0)
+
+    the_actor.destroy
+
+    redirect_to("/backdoor/actors", {:notice => "Actor deleted successfully."})
   end
 end
