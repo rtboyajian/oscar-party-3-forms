@@ -5,14 +5,14 @@
   </a>
 </p>
 
-<form action="/backdoor/modify_director/<%= @the_director.id %>" method="post"
+<form action="/backdoor/modify_director/<%= @the_director.id %>" method="post">
   <div>
-    <label for="director_first_name_box">Director First Name</label>
+    <label for="director_first_name_box">First Name</label>
     <input type="text" id="director_first_name_box" name="query_first_name" value="<%= @the_director.first_name %>">
   </div>
 
   <div>
-    <label for="director_last_name_box">Director Last Name</label>
+    <label for="director_last_name_box">Last Name</label>
     <input type="text" id="director_last_name_box" name="query_last_name" value="<%= @the_director.last_name %>">
   </div>
 
@@ -28,7 +28,7 @@
   </div>
 
   <div>
-    <label for="director_image">Image URL<label>
+    <label for="director_image">Image URL</label>
     <input type="text" id="director_image" name="query_image" value="<%= @the_director.image %>">
   </div>
 
