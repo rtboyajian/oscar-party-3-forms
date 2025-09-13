@@ -1,7 +1,7 @@
 <h1>Edit Actor #<%= @the_actor.id %></h1>
 
 <p>
-  <a href="/directors/<%= @the_actor.id %>" target="_blank">View Actor Details </a>
+  <a href="/actors/<%= @the_actor.id %>" target="_blank">View Actor Details </a>
 </p>
 
 <form action="/backdoor/modify_actor/<%= @the_actor.id %>" method="post">
